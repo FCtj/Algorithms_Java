@@ -1,0 +1,113 @@
+public class DLLNode{
+	private int data;
+	private DLLNode next;
+	private DLLNode prev;
+	public DLLNode(int data){
+		this.data =data;
+	}
+	public int getData() {
+		return data;
+	}
+	public void setData(int data) {
+		this.data = data;
+	}
+	public DLLNode getNext() {
+		return next;
+	}
+	public void setNext(DLLNode next) {
+		this.next = next;
+	}
+	public DLLNode getPrev() {
+		return prev;
+	}
+	public void setPrev(DLLNode prev) {
+		this.prev = prev;
+	}
+	
+	public DLLNode DeleteNode(DLLNode headNode, int position){
+		int size = 	ListLength(headNode);
+		if(position<1||position>ListLength(headNode)){
+			System.out.println("you must write valid number!! 1<x<"+ListLength(headNode));
+			return headNode;
+		}else if(position ==1){
+			DLLNode currentNode = headNode.getNext();
+			headNode=null;
+			currentNode.setPrev(null);
+			return currentNode;
+		}
+		else{
+			int count = 1;
+			DLLNode prevNode = headNode;
+			while(count < position-1){
+				prevNode = prevNode.getNext();
+				count++;
+			}
+			DLLNode currentNode = prevNode.getNext();
+			DLLNode nextNode= currentNode.getNext();
+			prevNode.setNext(nextNode);
+			if(nextNode!=null){
+				nextNode.setPrev(prevNode);
+			}
+			currentNode = null;
+			return headNode;
+		}
+	}
+	
+	public boolean FindNode(DLLNode headNode,int data){
+		while(headNode != null){
+			if(headNode.getData()==data){
+				System.out.println(data+"를 찾았습니다.!!");
+				
+				return true;
+			}
+			headNode=headNode.getNext();
+		}
+		System.out.println(data+"를 찾지 못했습니다.!!");
+		return false;
+	}
+	
+	public DLLNode InsertNode(DLLNode headNode, DLLNode insertNode, int position){
+		if(headNode == null){
+			return insertNode;
+		}
+		int size = ListLength(headNode);
+		if(position<1||position>ListLength(headNode)+1){
+			System.out.println("you must write valid number!! 1<x<"+ListLength(headNode));
+			return headNode;
+		}
+		if(position == 1){
+			insertNode.setNext(headNode);
+			headNode.setPrev(insertNode);
+			return insertNode;
+		}else{
+			DLLNode prevNode = headNode;
+			int count = 1;
+			while(count < position-1){
+				prevNode=prevNode.getNext();
+				count++;
+			}
+			DLLNode currentNode = prevNode.getNext();
+			insertNode.setNext(currentNode);
+			if(currentNode!=null)
+				currentNode.setPrev(insertNode);
+			prevNode.setNext(insertNode);
+			insertNode.setPrev(prevNode);
+			return headNode;
+		}
+	}
+	public int ListLength(DLLNode headNode){
+		int length = 0;
+		while(headNode!=null){
+			headNode=headNode.getNext();
+			length++;
+		}
+		return length;
+	}
+	public void PrintNode(DLLNode headNode){
+		int count = 1;
+		while(headNode!=null){
+			System.out.println(count++ + "번째 데이터 ="+headNode.getData());
+			headNode=headNode.getNext();
+		}
+	}
+}
