@@ -1,0 +1,94 @@
+public class ListNode{
+	private int data;
+	private ListNode next;
+	public ListNode(int data){
+		this.data =data;
+	}
+	public int getData() {
+		return data;
+	}
+	public void setData(int data) {
+		this.data = data;
+	}
+	public ListNode getNext() {
+		return next;
+	}
+	public void setNext(ListNode next) {
+		this.next = next;
+	}
+	
+	public ListNode DeleteNode(ListNode headNode, int position){
+		int size = 	ListLength(headNode);
+		if(position<1||position>ListLength(headNode)){
+			System.out.println("you must write valid number!! 1<x<"+ListLength(headNode));
+			return headNode;
+		}else if(position ==1){
+			ListNode currentNode = headNode.getNext();
+			headNode=null;
+			return currentNode;
+		}
+		else{
+			int count = 1;
+			ListNode prevNode = headNode;
+			while(count < position-1){
+				prevNode = prevNode.getNext();
+				count++;
+			}
+			prevNode.setNext(prevNode.getNext().getNext());
+			return headNode;
+		}
+	}
+	
+	public boolean FindNode(ListNode headNode,int data){
+		while(headNode != null){
+			if(headNode.getData()==data){
+				System.out.println(data+"를 찾았습니다.!!");
+				
+				return true;
+			}
+			headNode=headNode.getNext();
+		}
+		System.out.println(data+"를 찾지 못했습니다.!!");
+		return false;
+	}
+	
+	public ListNode InsertNode(ListNode headNode, ListNode insertNode, int position){
+		if(headNode == null){
+			return insertNode;
+		}
+		int size = ListLength(headNode);
+		if(position<1||position>ListLength(headNode)+1){
+			System.out.println("you must write valid number!! 1<x<"+ListLength(headNode));
+			return headNode;
+		}
+		if(position == 1){
+			insertNode.setNext(headNode);
+			return insertNode;
+		}else{
+			ListNode prevNode = headNode;
+			int count = 1;
+			while(count < position-1){
+				prevNode=prevNode.getNext();
+				count++;
+			}
+			insertNode.setNext(prevNode.getNext());
+			prevNode.setNext(insertNode);
+			return headNode;
+		}
+	}
+	public int ListLength(ListNode headNode){
+		int length = 0;
+		while(headNode!=null){
+			headNode=headNode.getNext();
+			length++;
+		}
+		return length;
+	}
+	public void PrintNode(ListNode headNode){
+		int count = 1;
+		while(headNode!=null){
+			System.out.println(count++ + "번째 데이터 = "+headNode.getData());
+			headNode=headNode.getNext();
+		}
+	}
+}
