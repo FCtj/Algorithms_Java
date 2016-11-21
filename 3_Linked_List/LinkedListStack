@@ -1,0 +1,45 @@
+public class LLStack {
+		private ListNode head;
+
+		public LLStack(int data){
+			this.head = new ListNode(data);
+		}
+		
+		void Push(int data){
+			ListNode push = new ListNode(data);
+			push.setNext(head);
+			head=push;
+		}
+		
+		int Pop(){
+			if(head==null){System.out.println("Stack Underflow");
+				return 0;
+			}
+			int data = head.getData();
+			head=head.getNext();
+			return data;
+		}
+		void deleteStack(){
+			head=null;
+		}
+		int Top(){
+			if(head==null){System.out.println("Stack is Empty!");return 0;}
+			else{return head.getData();}
+		}
+		int Size(){
+			ListNode prev = head;
+			int size = 0;
+			while(prev != null){
+				prev=prev.getNext();
+				size++;
+			}
+			return size;
+		}
+		void PrintStack(){
+			ListNode current = head;
+			while(current != null){
+				System.out.println(current.getData());
+				current = current.getNext();
+			}
+		}
+	}
