@@ -6,7 +6,7 @@ public class LLStack {
 	}
 
 	void push(int data) {
-		if (headNode == null)
+		if (isEmpty())
 			headNode = new ListNode(data);
 		else if (headNode.getData() == 0)
 			headNode.setData(data);
@@ -18,7 +18,7 @@ public class LLStack {
 	}
 
 	int pop() {
-		if (headNode == null) {
+		if (isEmpty()) {
 			System.out.println("Stack Underflow");
 			return -1;
 		} else {
@@ -33,7 +33,7 @@ public class LLStack {
 	}
 
 	int top() {
-		if(headNode==null){
+		if(isEmpty()){
 			System.out.println("Stack Underflow!");}
 		else{
 			return headNode.getData();
@@ -42,13 +42,16 @@ public class LLStack {
 	}
 
 	int size() {
-		if(headNode==null)
+		if(isEmpty())
 			return 0;
 		else{
 			return headNode.ListLength();
 		}
 	}
-
+	boolean isEmpty(){
+		if(isEmpty())return true;
+		else return false;
+	}
 	void PrintStack() {
 		headNode.PrintNode();
 	}
