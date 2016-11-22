@@ -2,7 +2,7 @@ public class LLStack {
 	private ListNode headNode;
 
 	public LLStack() {
-		headNode = new ListNode(0);
+		headNode = null;
 	}
 
 	void push(int data) {
@@ -49,7 +49,7 @@ public class LLStack {
 		}
 	}
 	boolean isEmpty(){
-		if(isEmpty())return true;
+		if(headNode==null)return true;
 		else return false;
 	}
 	void PrintStack() {
