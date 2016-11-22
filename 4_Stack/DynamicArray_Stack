@@ -1,0 +1,59 @@
+public class DAStack {
+	private int[] data;
+	private int top;
+	private int capacity;
+
+	public DAStack() {
+		capacity = 1;
+		data = new int[capacity];
+		top = -1;
+	}
+	int pop() {
+		if (isEmpty()) {
+			System.out.println("Stack Underflow!!");
+			return -1;
+		}
+		return data[top--];
+	}
+
+	void push(int push) {
+		if (isStackFull())
+			doubleStack();
+		data[++top] = push;
+	}
+
+	void doubleStack() {
+		int newData[] = new int[capacity * 2];
+		System.arraycopy(data, 0, newData, 0, capacity);
+		capacity *= 2;
+		data = newData;
+	}
+
+	boolean isEmpty() {
+		return (top == -1);
+	}
+
+	boolean isStackFull() {
+		return (top == capacity - 1);
+	}
+
+	int top() {
+		if (top == -1) {
+			System.out.println("Stack Underflow!!");
+		}
+		return data[top];
+	}
+
+	void deleteStack() {
+		top = -1;
+	}
+
+	void PrintStack() {
+		if (top != -1) {
+			System.out.println("Stack elements number = "+top+1);
+			for (int i = top; i >= 0; i--) {
+				System.out.println("Stack element = " + data[i]);
+			}
+		}
+	}
+}
