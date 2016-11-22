@@ -1,0 +1,55 @@
+public class LLStack {
+	private ListNode headNode;
+
+	public LLStack() {
+		headNode = new ListNode(0);
+	}
+
+	void push(int data) {
+		if (headNode == null)
+			headNode = new ListNode(data);
+		else if (headNode.getData() == 0)
+			headNode.setData(data);
+		else {
+			ListNode pushNode = new ListNode(data);
+			pushNode.setNext(headNode);
+			headNode = pushNode;
+		}
+	}
+
+	int pop() {
+		if (headNode == null) {
+			System.out.println("Stack Underflow");
+			return -1;
+		} else {
+			int data = headNode.getData();
+			headNode = headNode.getNext();
+			return data;
+		}
+	}
+
+	void deleteStack() {
+		headNode=null;
+	}
+
+	int top() {
+		if(headNode==null){
+			System.out.println("Stack Underflow!");}
+		else{
+			return headNode.getData();
+		}
+		return -1;
+	}
+
+	int size() {
+		if(headNode==null)
+			return 0;
+		else{
+			return headNode.ListLength();
+		}
+	}
+
+	void PrintStack() {
+		headNode.PrintNode();
+	}
+}
